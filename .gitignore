@@ -1,0 +1,7 @@
+# build outputs
+*.dylib
+*.o
+build/
+
+# macOS
+.DS_Store
