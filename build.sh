@@ -39,6 +39,7 @@ xcrun --sdk iphoneos clang \
   -dynamiclib \
   -install_name "@executable_path/Frameworks/LKFindImage.dylib" \
   -framework UIKit -framework Foundation -framework QuartzCore \
+  -framework CoreGraphics \
   -o "${OUT}" \
   "${OBJDIR}"/*.o
 

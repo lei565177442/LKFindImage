@@ -5,3 +5,7 @@ build/
 
 # macOS
 .DS_Store
+
+# CI 失败日志
+build.log
+build/
