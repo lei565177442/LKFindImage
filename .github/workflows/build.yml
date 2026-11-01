@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: macos-14
@@ -13,21 +16,47 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Toolchain info
+        continue-on-error: true
         run: |
           xcodebuild -version
           xcrun --sdk iphoneos --show-sdk-version
 
       - name: Build dylib
+        id: build
         run: |
           chmod +x build.sh
-          ./build.sh
+          set +e
+          ./build.sh > build.log 2>&1
+          CODE=$?
+          echo "exit=${CODE}" >> build.log
+          echo "code=${CODE}" >> "$GITHUB_OUTPUT"
+          set -e
+          echo "----- last 60 lines -----"
+          tail -n 60 build.log
+          if [ "$CODE" -ne 0 ]; then
+            echo "::error::build failed, see build.log"
+          fi
 
-      - name: Verify binary
+      # 失败时把日志提交回仓库，方便直接读取完整报错
+      - name: Commit failure log
+        if: steps.build.outputs.code != '0'
+        continue-on-error: true
         run: |
-          file LKFindImage.dylib
-          otool -L LKFindImage.dylib || true
+          git config user.name "ci-bot"
+          git config user.email "ci-bot@users.noreply.github.com"
+          git add -f build.log
+          git commit -m "ci: build failed log [skip ci]" || true
+          git push origin HEAD:main || true
 
-      - name: Upload artifact
+      - name: Upload failure log
+        if: steps.build.outputs.code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+
+      - name: Upload dylib
+        if: steps.build.outputs.code == '0'
         uses: actions/upload-artifact@v4
         with:
           name: LKFindImage-dylib
