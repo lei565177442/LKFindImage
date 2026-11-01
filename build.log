@@ -1,0 +1,82 @@
+==> SDK: /Applications/Xcode_15.4.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.5.sdk
+Apple clang version 15.0.0 (clang-1500.3.9.4)
+Target: arm64-apple-darwin23.6.0
+==> CC src/LKFIEntry.m
+==> CC src/LKFISupport.m
+==> CC src/LKFIUI.m
+==> CC src/LKFIMatcher.c
+==> LINK LKFindImage.dylib
+Undefined symbols for architecture arm64:
+  "_CGBitmapContextCreate", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGColorSpaceCreateDeviceRGB", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGColorSpaceRelease", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGContextDrawImage", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGContextFillRect", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGContextRelease", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGContextSetLineWidth", referenced from:
+      -[LKFIHitView drawRect:] in LKFIUI.o
+  "_CGContextSetRGBFillColor", referenced from:
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+  "_CGContextSetStrokeColorWithColor", referenced from:
+      -[LKFIHitView drawRect:] in LKFIUI.o
+  "_CGContextStrokeRect", referenced from:
+      -[LKFIHitView drawRect:] in LKFIUI.o
+  "_CGImageCreateWithImageInRect", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+  "_CGImageGetHeight", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+      -[LKFITemplateStore saveImage:name:] in LKFISupport.o
+      -[LKFIPanel refreshTemplateRow] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+  "_CGImageGetWidth", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+      +[LKFIImageUtil grayCopyOfCGImage:width:height:] in LKFISupport.o
+      -[LKFITemplateStore saveImage:name:] in LKFISupport.o
+      -[LKFIPanel refreshTemplateRow] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+  "_CGImageRelease", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+  "_CGRectGetMaxX", referenced from:
+      -[LKFIPanel pickIndexFrom:scores:] in LKFIUI.o
+  "_CGRectGetMaxY", referenced from:
+      -[LKFIPanel pickIndexFrom:scores:] in LKFIUI.o
+  "_CGRectGetMidX", referenced from:
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel onCopyCoord] in LKFIUI.o
+      -[LKFIPanel onShowAllHits] in LKFIUI.o
+  "_CGRectGetMidY", referenced from:
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+      -[LKFIPanel onCopyCoord] in LKFIUI.o
+      -[LKFIPanel onShowAllHits] in LKFIUI.o
+  "_CGRectInset", referenced from:
+      -[LKFIHitView drawRect:] in LKFIUI.o
+  "_CGRectIntegral", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+  "_CGRectIntersection", referenced from:
+      +[LKFIImageUtil cropImage:toPixelRect:] in LKFISupport.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+  "_CGRectIsNull", referenced from:
+      -[LKFIPanel refreshRegionLabel] in LKFIUI.o
+      -[LKFIPanel doMatch] in LKFIUI.o
+  "_CGRectNull", referenced from:
+      -[LKFIPanel initWithFrame:] in LKFIUI.o
+  "_CGRectZero", referenced from:
+      -[LKFISelectorView onConfirm] in LKFIUI.o
+      -[LKFISelectorView onCancel] in LKFIUI.o
+ld: symbol(s) not found for architecture arm64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+exit=1
